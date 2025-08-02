@@ -1,0 +1,51 @@
+<!-- navbar.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-4">
+  <a class="navbar-brand fw-bold text-white" routerLink="/">MyStore 🛒</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/about" routerLinkActive="active">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/products" routerLinkActive="active">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/contact" routerLinkActive="active">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Search Form -->
+    <form class="d-flex align-items-center me-3" (ngSubmit)="onSearch()">
+      <input [(ngModel)]="searchTerm" name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
+    <!-- Auth Buttons / User Info -->
+    <div class="d-flex align-items-center">
+      <ng-container *ngIf="isLoggedIn(); else guestLinks">
+        <div class="dropdown">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            👋 {{ currentUserName }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+            <li><button class="dropdown-item" (click)="logout()">Logout</button></li>
+          </ul>
+        </div>
+      </ng-container>
+
+      <ng-template #guestLinks>
+        <a routerLink="/login" class="btn btn-outline-light me-2">Login</a>
+        <a routerLink="/register" class="btn btn-outline-light">Register</a>
+      </ng-template>
+    </div>
+  </div>
+</nav>

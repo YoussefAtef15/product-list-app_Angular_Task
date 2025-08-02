@@ -1,0 +1,38 @@
+<!-- register.component.html -->
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow p-4" style="width: 100%; max-width: 450px;">
+    <h3 class="text-center mb-4">📝 Create an Account</h3>
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input [(ngModel)]="user.name" name="name" type="text" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input [(ngModel)]="user.email" name="email" type="email" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input [(ngModel)]="user.password" name="password" type="password" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input [(ngModel)]="user.confirmPassword" name="confirmPassword" type="password" class="form-control" required />
+
+        <div *ngIf="passwordMismatch" class="text-danger mt-2">
+          Passwords do not match
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Register</button>
+    </form>
+
+    <div class="text-center mt-3">
+      <span>Already have an account?</span>
+      <a routerLink="/login">Login</a>
+    </div>
+  </div>
+</div>

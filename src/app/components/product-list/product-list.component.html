@@ -1,8 +1,11 @@
 <div class="product-grid">
-  <div *ngFor="let product of products" class="product-card">
-    <img [src]="product.image" alt="{{ product.title }}" />
+  <div *ngFor="let product of filteredProducts" class="product-card">
+    <img [src]="product.image" alt="Product Image" width="150">
     <h3>{{ product.title }}</h3>
-    <p>{{ product.description }}</p>
-    <h4>\${{ product.price }}</h4>
+    <p>{{ product.price }} $</p>
+
+    <a [routerLink]="['/products', product.id]">
+      <button class="view-btn">View Details</button>
+    </a>
   </div>
 </div>

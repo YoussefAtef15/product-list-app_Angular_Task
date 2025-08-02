@@ -1,0 +1,33 @@
+<!-- src/app/components/admin/product-admin.component.html -->
+<div class="container py-5">
+  <div class="card shadow p-4 mb-4">
+    <h3 class="mb-4 text-center">📦 Manage Products</h3>
+    <form (ngSubmit)="addProduct()" class="row g-3">
+      <div class="col-md-4">
+        <input [(ngModel)]="newProduct.title" name="title" class="form-control" placeholder="Title" required />
+      </div>
+      <div class="col-md-4">
+        <input [(ngModel)]="newProduct.price" name="price" class="form-control" placeholder="Price" required />
+      </div>
+      <div class="col-md-4">
+        <input [(ngModel)]="newProduct.image" name="image" class="form-control" placeholder="Image URL" required />
+      </div>
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary">Add Product</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card shadow p-4">
+    <h4 class="mb-4">🗂️ Product List</h4>
+    <ul class="list-group">
+      <li *ngFor="let product of products; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img [src]="product.image" alt="{{ product.title }}" width="50" height="50" class="me-3" />
+          <strong>{{ product.title }}</strong> - ${{ product.price.toFixed(2) }}
+        </div>
+        <button (click)="deleteProduct(i)" class="btn btn-sm btn-outline-danger">Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>
